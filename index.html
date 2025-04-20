@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carte des 9 Royaumes</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #1a1a1a;
+      font-family: 'Cinzel', serif;
+    }
+    .map-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background: url('assets/Carte_du_monde_def.jpg') center/cover no-repeat;
+    }
+    .marker {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: rgba(255, 215, 0, 0.7);
+      border: 2px solid #000;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .marker:hover {
+      transform: scale(1.3);
+      box-shadow: 0 0 10px 5px gold;
+    }
+    .tooltip {
+      position: absolute;
+      background-color: #2b2b2b;
+      color: #fff8dc;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      font-size: 14px;
+      display: none;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div class="map-container" id="map">
+    <div class="marker" style="top: 5%; left: 48%;" data-name="Kegare"></div>
+    <div class="marker" style="top: 20%; left: 45%;" data-name="Hoto-Hashi"></div>
+    <div class="marker" style="top: 22%; left: 60%;" data-name="Djin Nutag"></div>
+    <div class="marker" style="top: 15%; left: 30%;" data-name="Frozen Nutag"></div>
+    <div class="marker" style="top: 38%; left: 42%;" data-name="Galyn Nutag"></div>
+    <div class="marker" style="top: 42%; left: 25%;" data-name="Illustreterre"></div>
+    <div class="marker" style="top: 45%; left: 58%;" data-name="Kaizoku"></div>
+    <div class="marker" style="top: 52%; left: 38%;" data-name="Hana Kumi"></div>
+    <div class="marker" style="top: 75%; left: 20%;" data-name="Sableterre"></div>
+    <div class="marker" style="top: 82%; left: 35%;" data-name="Jokito"></div>
+    <div class="tooltip" id="tooltip"></div>
+  </div>
+  <script>
+    const markers = document.querySelectorAll('.marker');
+    const tooltip = document.getElementById('tooltip');
+
+    const regionInfo = {
+      "Kegare": "Royaume de la bouche, foyer de la terreur politique.",
+      "Hoto-Hashi": "Centre politique, terres fertiles et innovation.",
+      "Djin Nutag": "Terre des drows, dirigée par le Cercle.",
+      "Frozen Nutag": "Barbares et glace, royaume de survie.",
+      "Galyn Nutag": "Terre volcanique des nains, forge légendaire.",
+      "Illustreterre": "Cité des érudits, savoir et magie.",
+      "Kaizoku": "Région pirate et estomac du monde.",
+      "Hana Kumi": "Forêts mystiques, shamans et nature.",
+      "Sableterre": "Désert mystique des Tisseurs de sable.",
+      "Jokito": "Ville industrielle à vapeur et alchimie."
+    };
+
+    markers.forEach(marker => {
+      marker.addEventListener('mouseenter', (e) => {
+        const name = e.target.getAttribute('data-name');
+        tooltip.innerText = regionInfo[name];
+        tooltip.style.display = 'block';
+        tooltip.style.top = (e.target.offsetTop - 40) + 'px';
+        tooltip.style.left = (e.target.offsetLeft + 20) + 'px';
+      });
+      marker.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
