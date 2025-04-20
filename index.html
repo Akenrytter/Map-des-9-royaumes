@@ -6,15 +6,16 @@
   <title>Carte des 9 Royaumes</title>
   <style>
     body {
-      margin: 0;
-      background-color: #1a1a1a;
-      font-family: 'Cinzel', serif;
-    }
+  margin: 0;
+  background-color: #1a1a1a;
+  font-family: 'Cinzel', serif;
+  overflow: auto;
+}
     .map-container {
       position: relative;
-      width: 100vw;
-      height: 100vh;
-      background: url('assets/main_map.png') ;
+  width: 2000px;
+  height: 3000px;
+      background: url('assets/main_map.png') top left / contain no-repeat; ;
     }
     .marker {
       position: absolute;
