@@ -44,6 +44,9 @@
     }
   </style>
 </head>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
+  <div class="region-name" style="top: 40%; left: 49%;">Hoto-Hashi</div>
+  
 <body>
   <div class="map-container" id="map">
     <div class="marker" style="top: 19%; left: 48%;" data-name="Kegare"></div>
@@ -87,6 +90,14 @@
         tooltip.style.display = 'none';
       });
     });
+     .region-name {
+      position: absolute;
+      font-family: 'Uncial Antiqua', serif;
+      font-size: 24px;
+      color: gold;
+      text-shadow: 2px 2px 4px black;
+      pointer-events: none;
+    }
   </script>
 </body>
 </html>
