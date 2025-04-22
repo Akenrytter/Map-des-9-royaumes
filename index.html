@@ -2,15 +2,22 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carte des 9 Royaumes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&display=swap" rel="stylesheet">
   <style>
     body {
-  margin: 0;
-  background-color: #1a1a1a;
-  font-family: 'Cinzel', serif;
-  overflow: auto;
-}
+      background-color: #1a1a1a;
+      margin: 0;
+      overflow: auto;
+    }
+    .region-name {
+      position: absolute;
+      font-family: 'Uncial Antiqua', serif;
+      font-size: 24px;
+      color: gold;
+      text-shadow: 2px 2px 4px black;
+      pointer-events: none;
+    }
     .map-container {
       position: relative;
   width: 2000px;
