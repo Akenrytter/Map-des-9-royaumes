@@ -78,6 +78,22 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
   pointer-events: none;
 }
+.icon {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 10;
+}
+.icon img {
+  width: 45%;
+  height: auto;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+.icon:hover img {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 8px gold);
+}
   </style>
 </head>
 <body>
@@ -105,6 +121,11 @@
     <div class="region-name" style="top: 63%; left: 38%;">Hana Kumi</div>
     <div class="region-name" style="top: 72%; left: 68%;">Sableterre</div>
     <div class="region-name" style="top: 80%; left: 29%;">Jokito</div>
+     <!-- Icons on the map -->
+    <div class="icon" style="top: 52%; left: 61%;" onclick="showPopup('Quête secondaire', 'Explore la caverne interdite pour retrouver l’amulette perdue.')">
+  <img src="assets/cave_icon.png" alt="quête secondaire">
+      
+</div>
   </div>
   <div id="popup" class="popup">
     <div id="popup-title"></div>
