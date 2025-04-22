@@ -2,27 +2,21 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Carte des 9 Royaumes</title>
-  <link href="https://fonts.google.com/specimen/Amarante?categoryFilters=Appearance:%2FTheme%2FArt+Nouveau" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amarante&display=swap" rel="stylesheet">
   <style>
     body {
-      background-color: #1a1a1a;
       margin: 0;
+      background-color: #1a1a1a;
+      font-family: 'Cinzel', serif;
       overflow: auto;
-    }
-    .region-name {
-      position: absolute;
-      font-family: 'Amara', serif;
-      font-size: 54px;
-      color: gold;
-      text-shadow: 2px 2px 4px black;
-      pointer-events: none;
     }
     .map-container {
       position: relative;
-  width: 2000px;
-  height: 3000px;
-      background: url('assets/main_map.png') top left / contain no-repeat; ;
+      width: 2000px;
+      height: 3000px;
+      background: url('assets/Carte_du_monde_def.jpg') top left / contain no-repeat;
     }
     .marker {
       position: absolute;
@@ -49,10 +43,41 @@
       display: none;
       z-index: 10;
     }
+    .popup {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      padding: 20px;
+      background: #2a2a2a;
+      color: #fff8dc;
+      border: 1px solid #555;
+      border-radius: 10px;
+      max-width: 300px;
+      box-shadow: 0 0 10px black;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .popup.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: all;
+    }
+    .region-name {
+      position: absolute;
+      font-family: 'Amarante', cursive;
+      font-size: 26px;
+      color: gold;
+      text-shadow: 2px 2px 4px black;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
   <div class="map-container" id="map">
+    <!-- Markers -->
     <div class="marker" style="top: 19%; left: 48%;" data-name="Kegare"></div>
     <div class="marker" style="top: 37.59%; left: 39.2%;" data-name="Hoto-Hashi"></div>
     <div class="marker" style="top: 43%; left: 59%;" data-name="Djin Nutag"></div>
@@ -64,13 +89,28 @@
     <div class="marker" style="top: 70%; left: 70%;" data-name="Sableterre"></div>
     <div class="marker" style="top: 78%; left: 30%;" data-name="Jokito"></div>
     <div class="tooltip" id="tooltip"></div>
+    <!-- Region Names -->
+    <div class="region-name" style="top: 20%; left: 48%;">Kegare</div>
+    <div class="region-name" style="top: 40%; left: 45%;">Hoto-Hashi</div>
+    <div class="region-name" style="top: 50%; left: 59%;">Djin Nutag</div>
+    <div class="region-name" style="top: 51%; left: 21%;">Frozen Nutag</div>
+    <div class="region-name" style="top: 60%; left: 20%;">Galyn Nutag</div>
+    <div class="region-name" style="top: 50%; left: 80%;">Illustreterre</div>
+    <div class="region-name" style="top: 69%; left: 40%;">Kaizoku</div>
+    <div class="region-name" style="top: 58%; left: 42%;">Hana Kumi</div>
+    <div class="region-name" style="top: 75%; left: 70%;">Sableterre</div>
+    <div class="region-name" style="top: 70%; left: 30%;">Jokito</div>
+  </div>
+  <div id="popup" class="popup">
+    <div id="popup-title"></div>
+    <div id="popup-text"></div>
   </div>
   <script>
     const markers = document.querySelectorAll('.marker');
     const tooltip = document.getElementById('tooltip');
 
     const regionInfo = {
-      "Kegare": "Royaume déchu, foyer de la terreur politique.",
+      "Kegare": "Royaume déchu, foyer des ombres.",
       "Hoto-Hashi": "Centre politique, terres fertiles et innovation.",
       "Djin Nutag": "Terre des drows, dirigée par le Cercle.",
       "Frozen Nutag": "Barbares et glace, royaume de survie.",
@@ -79,7 +119,7 @@
       "Kaizoku": "Région pirate et estomac du monde.",
       "Hana Kumi": "Forêts mystiques, shamans et nature.",
       "Sableterre": "Désert mystique des Tisseurs de sable.",
-      "Jokito": "Ville industrielle à vapeur et alchimie."
+      "Jokito": "Villes industrielles à vapeur et alchimie."
     };
 
     markers.forEach(marker => {
@@ -93,8 +133,21 @@
       marker.addEventListener('mouseleave', () => {
         tooltip.style.display = 'none';
       });
+      marker.addEventListener('click', (e) => {
+        const name = e.target.getAttribute('data-name');
+        showPopup(name, regionInfo[name]);
+      });
     });
 
+    function showPopup(title, text) {
+      const popup = document.getElementById('popup');
+      document.getElementById('popup-title').textContent = title;
+      document.getElementById('popup-text').textContent = text;
+      popup.classList.add('visible');
+      setTimeout(() => {
+        popup.classList.remove('visible');
+      }, 8000);
+    }
   </script>
 </body>
 </html>
